@@ -1,0 +1,19 @@
+{
+  "name": "@blockchain/2fa",
+  "version": "1.0.0",
+  "description": "A modular Two-Factor Authentication library",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "2fa",
+    "totp",
+    "hotp",
+    "otp",
+    "authentication"
+  ],
+  "author": "Blockchain Project",
+  "license": "MIT"
+}
