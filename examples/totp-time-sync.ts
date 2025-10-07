@@ -48,7 +48,7 @@ async function runExample() {
     token: currentToken,
     window: 1
   })
-  console.log(`Token actual válido con ventana de 1: ${isValidWithWindow ? 'Sí' : 'No'}`)
+  console.log(`Token actual válido con ventana de 1: ${isValidWithWindow !== null ? 'Sí' : 'No'}`)
 
   // Simular un desfase de tiempo del cliente
   console.log("\nSimulando desfase de tiempo del cliente:")
@@ -91,23 +91,23 @@ async function runExample() {
   // Tendremos que validar usando el tiempo del cliente como referencia
   const clientTokenValidInServer = await serverTotp.validate({
     token: clientToken,
-    timestamp: clientTime, // Usar el tiempo del cliente
-    window: 3 // Ventana de 3 períodos (90 segundos)
+    timestamp: serverTime, // Usar el tiempo del servidor
+    window: 5 // Ventana de 5 períodos (150 segundos)
   })
   
-  console.log(`Token del cliente válido en servidor: ${clientTokenValidInServer ? 'Sí' : 'No'}`)
+  console.log(`Token del cliente válido en servidor: ${clientTokenValidInServer !== null ? 'Sí' : 'No'}`)
   
   // Demostrar el efecto de diferentes ventanas
   console.log("\nEfecto de diferentes ventanas de validación:")
   console.log("-------------------------------------------")
   
-  for (let windowSize = 0; windowSize <= 3; windowSize++) {
+  for (let windowSize = 0; windowSize <= 5; windowSize++) {
     const valid = await serverTotp.validate({
       token: clientToken,
-      timestamp: clientTime,
+      timestamp: serverTime,
       window: windowSize
     })
-    console.log(`Ventana de ±${windowSize} períodos: ${valid ? 'Válido' : 'Inválido'}`)
+    console.log(`Ventana de ±${windowSize} períodos: ${valid !== null ? 'Válido' : 'Inválido'}${valid !== null ? ` (delta: ${valid})` : ''}`)
   }
 }
 
