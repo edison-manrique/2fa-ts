@@ -97,7 +97,7 @@ Ejemplos detallados se pueden encontrar en el directorio [examples](./examples):
 
 Ejecutar ejemplos con:
 ```bash
-npx ts-node examples/totp-basic.ts
+bun run examples/totp-basic.ts
 ```
 
 ## API
